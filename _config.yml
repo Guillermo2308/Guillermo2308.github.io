@@ -1,0 +1,25 @@
+title: Guillermo Guerrero-Vacas | Investigación y transferencia
+description: Web académica personal sobre ingeniería de fabricación, superficies, materiales y transferencia.
+url: ""
+baseurl: ""
+lang: es
+timezone: Europe/Madrid
+markdown: kramdown
+collections:
+  publicaciones:
+    output: true
+    permalink: /publicaciones/:name/
+  proyectos:
+    output: true
+    permalink: /proyectos/:name/
+  articulos:
+    output: true
+    permalink: /articulos/:name/
+defaults:
+  - scope: {path: "", type: publicaciones}
+    values: {layout: detalle}
+  - scope: {path: "", type: proyectos}
+    values: {layout: detalle}
+  - scope: {path: "", type: articulos}
+    values: {layout: detalle}
+exclude: [README.md, GUIA_ACTUALIZACIONES.md]

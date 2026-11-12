@@ -1,0 +1,14 @@
+Copiar este archivo como nombre-articulo.md (sin .txt) cuando los datos estén verificados.
+---
+title: "Título verificado del artículo"
+tipo: Publicación científica
+orden: 1
+resumen: "Resumen original de 2-3 líneas"
+doi: "10.xxxx/xxxxx"
+---
+
+## Referencia
+Autores, revista, año, volumen y páginas.
+
+## Aportación
+Resumen original de los resultados.

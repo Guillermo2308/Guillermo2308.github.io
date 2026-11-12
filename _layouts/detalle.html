@@ -1,0 +1,4 @@
+---
+layout: default
+---
+<section class="section detail"><div class="container narrow"><a class="back" href="{{ '/' | relative_url }}">← Volver al inicio</a><p class="eyebrow">{{ page.tipo | default: page.collection | upcase }}</p><h1>{{ page.title | escape }}</h1>{% if page.estado %}<p class="state">Estado: {{ page.estado }}</p>{% endif %}{% if page.fecha %}<p class="muted">{{ page.fecha }}</p>{% endif %}<div class="prose">{{ content }}</div>{% if page.doi %}<p><a href="https://doi.org/{{ page.doi | escape }}" rel="noopener noreferrer">Consultar DOI ↗</a></p>{% endif %}</div></section>
