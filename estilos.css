@@ -98,3 +98,11 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #4a
 
 /* Avisos institucionales particulares dentro del pie unificado */
 .v4-footer .footer-note{flex-basis:100%;font-size:.75rem;line-height:1.5;color:#c5dade;margin-top:2px}
+
+/* Presentación académica clara y jerarquizada en la portada */
+.hero-credentials{margin:18px 0 9px;display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+.hero-credentials p{margin:0}
+.hero-person-name{font-weight:750;color:#f2fafa;font-size:1.14rem;letter-spacing:.005em}
+.hero-qualification{font-weight:650;color:#abe5d8;font-size:1rem}
+.hero-academic-position{font-weight:500;color:#d3e7ea;font-size:.91rem}
+@media(max-width:700px){.hero-person-name{font-size:1.07rem}.hero-qualification{font-size:.96rem}.hero-academic-position{font-size:.87rem}}
