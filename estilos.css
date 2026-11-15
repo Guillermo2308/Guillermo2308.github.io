@@ -89,3 +89,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #4a
 .andalucia-flag{display:inline-block;flex:none;width:24px;height:16px;border:1px solid #b6d4d0;border-radius:2px;background:linear-gradient(to bottom,#008c45 0%,#008c45 33.333%,#fff 33.333%,#fff 66.666%,#008c45 66.666%,#008c45 100%);box-shadow:0 1px 3px #0018}
 @media(max-width:1180px){.site-header .ggv-brand-copy>.brand-location{font-size:.62rem}}
 @media(max-width:520px){.site-header .ggv-brand-copy>.brand-location{font-size:.59rem}.hero-location{font-size:.79rem}}
+
+/* Ilustración de trayectoria académica */
+.trajectory-visual{margin:30px 0 0;max-width:100%}
+.trajectory-visual img{display:block;width:100%;height:auto;border-radius:13px;box-shadow:0 14px 32px #153e4b1d;background:#e8f1f1}
+.trajectory-visual figcaption{margin-top:10px;color:#627781;font-size:.78rem;line-height:1.55}
+@media(max-width:700px){.trajectory-visual{margin-top:22px}}
