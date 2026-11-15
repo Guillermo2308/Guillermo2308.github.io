@@ -218,3 +218,21 @@ html{scrollbar-gutter:stable}
 @media(max-width:850px){.site-header .header-actions .nav-news{display:none}}
 @media(max-width:600px){.site-header .mobile-nav>summary{padding:9px 10px;font-size:.75rem}.site-header .header-actions{margin-left:auto}.site-header .nav-shell{gap:6px}}
 @media(max-width:430px){.site-header .mobile-nav>summary{font-size:0;gap:0}.site-header .mobile-nav>summary span{font-size:1.2rem}}
+
+/* Artículo técnico PFAS: lectura editorial, tabla y referencias */
+.article-lead{font-size:1.08rem;line-height:1.82}
+.article-conclusion{padding:21px 24px;border-left:4px solid #147f7e;background:#eef7f5;border-radius:0 10px 10px 0}
+.pfas-table-wrap{overflow-x:auto;max-width:100%;margin:24px 0 8px;border:1px solid #d4e5e5;border-radius:12px;background:#fff}
+.pfas-reg-table{border-collapse:collapse;width:100%;min-width:630px;font-size:.86rem;line-height:1.5}
+.pfas-reg-table caption{caption-side:top;text-align:left;padding:13px 16px;background:#edf5f4;color:#355d65;font-size:.82rem;font-weight:700}
+.pfas-reg-table th{background:#174a57;color:#fff;font-weight:750;text-align:left}
+.pfas-reg-table th,.pfas-reg-table td{padding:13px 15px;vertical-align:top;border-bottom:1px solid #dbe7e7}
+.pfas-reg-table tr:nth-child(even) td{background:#f4f8f8}
+.pfas-reg-table th:first-child{width:30%}
+.table-note,.article-disclaimer{font-size:.79rem;color:#5e737a;line-height:1.6}
+.article-references{font-size:.85rem;line-height:1.62;padding-left:23px}
+.article-references li{margin-bottom:10px;overflow-wrap:anywhere}
+.article-body ul{padding-left:24px}
+.article-body ul li{margin-bottom:9px}
+.news-published{display:inline-flex;align-items:center;background:#e1f2e9;border-radius:30px;padding:6px 13px;color:#20664c;font-size:.78rem;font-weight:750}
+@media(max-width:700px){.article-conclusion{padding:16px}.pfas-reg-table{font-size:.8rem}}
