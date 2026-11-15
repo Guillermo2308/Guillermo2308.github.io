@@ -80,3 +80,12 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #4a
 @media(max-width:700px){.metrics-grid{grid-template-columns:repeat(3,1fr)}.metric-card{padding:17px 7px}.metric-card strong{font-size:2rem}.metric-card span{font-size:.72rem}.quality-card{flex-wrap:wrap;text-align:left}.transfer-middle{grid-template-columns:1fr}.transfer-diagram{padding:24px 12px}.research-clickable .tile-tag{top:200px}}
 @media(max-width:390px){.metrics-grid{grid-template-columns:1fr 1fr}.metrics-grid .metric-card:last-child{grid-column:1/-1}.quality-donut{width:135px}.quality-donut>div{width:99px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.research-clickable,.research-clickable .tile-photo img,.transfer-result{transition:none}}
+
+/* Ubicación institucional e identidad territorial, noviembre 2026 */
+.site-header .ggv-brand-copy>.brand-location{display:flex;align-items:center;gap:6px;font-size:.68rem;line-height:1.3;color:#c6e1e0;font-weight:500}
+.spain-flag{font-size:1.05em;line-height:1;flex-shrink:0}
+.hero-location{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid #7facb155;border-radius:30px;background:#ffffff10;color:#e1f4f2;font-size:.87rem;letter-spacing:.015em;margin:5px 0 10px}
+.v4-footer .footer-location{display:inline-flex;align-items:center;gap:8px;color:#d2e6e4}
+.andalucia-flag{display:inline-block;flex:none;width:24px;height:16px;border:1px solid #b6d4d0;border-radius:2px;background:linear-gradient(to bottom,#008c45 0%,#008c45 33.333%,#fff 33.333%,#fff 66.666%,#008c45 66.666%,#008c45 100%);box-shadow:0 1px 3px #0018}
+@media(max-width:1180px){.site-header .ggv-brand-copy>.brand-location{font-size:.62rem}}
+@media(max-width:520px){.site-header .ggv-brand-copy>.brand-location{font-size:.59rem}.hero-location{font-size:.79rem}}
