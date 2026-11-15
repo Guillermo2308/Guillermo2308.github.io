@@ -14,6 +14,85 @@ if (footerSlot) {
     if (footer) { const span = document.createElement('span'); span.className = 'footer-note'; span.textContent = note; footer.appendChild(span); }
   }
 }
+
+/* Bilingual header. English pages are stored under /en/. */
+const isEnglish=location.pathname.split('/').includes('en');
+const englishPages=new Set(['index.html','superficies.html','fabricacion.html','conformado.html','valorwool.html','publicaciones.html','trayectoria.html','contacto.html','asesoramiento.html']);
+const currentFile=decodeURIComponent(location.pathname.split('/').pop()||'index.html');
+const requestedHref=isEnglish?'../'+currentFile:'en/'+currentFile;
+const translatedHref=englishPages.has(currentFile)?requestedHref:(isEnglish?'../index.html':'en/index.html');
+const actionGroup=document.querySelector('.site-header .header-actions');
+if(actionGroup){
+  const switcher=document.createElement('a');
+  switcher.className='language-switch';
+  switcher.href=translatedHref;
+  switcher.hreflang=isEnglish?'es':'en';
+  switcher.lang=isEnglish?'es':'en';
+  switcher.setAttribute('aria-label',isEnglish?'Ver esta página en español':'Read this page in English');
+  switcher.innerHTML=isEnglish?'ES <span aria-hidden="true">↗</span>':'EN <span aria-hidden="true">↗</span>';
+  actionGroup.appendChild(switcher);
+}
+const mobileLinks=document.querySelector('.mobile-links');
+if(mobileLinks){
+  const mobileSwitch=document.createElement('a');
+  mobileSwitch.href=translatedHref;
+  mobileSwitch.className='mobile-language-switch';
+  mobileSwitch.hreflang=isEnglish?'es':'en';
+  mobileSwitch.textContent=isEnglish?'Español (ES)':'English (EN)';
+  mobileLinks.appendChild(mobileSwitch);
+}
+if(isEnglish){
+  document.documentElement.lang='en';
+  const replacements={
+    'Ingeniería de los Procesos de Fabricación · Universidad de Córdoba':'Manufacturing Engineering · University of Córdoba',
+    'Córdoba · Andalucía · España':'Córdoba · Andalusia · Spain',
+    'Inicio':'Home','Investigación':'Research','ÁREAS DE INVESTIGACIÓN':'RESEARCH AREAS',
+    'Superficies y recubrimientos':'Surface Engineering & Coatings',
+    'Antiadherencia, desmoldeo y caracterización':'Non-stick properties, release and characterization',
+    'Fabricación avanzada':'Advanced Manufacturing',
+    'Fabricación aditiva y procesos híbridos':'Additive manufacturing and hybrid processes',
+    'Conformado y modelización':'Forming & Modelling',
+    'SPIF y comportamiento de chapas':'SPIF and sheet-metal behaviour',
+    'Materiales sostenibles':'Sustainable Materials',
+    'Fibras naturales y nuevos compuestos':'Natural fibres and new composites',
+    'Publicaciones':'Publications','Trayectoria':'Academic Profile',
+    'Contacto y ubicación':'Contact','Actualidad técnica':'Technical Insights',
+    'Asesoramiento':'Collaboration','Menú':'Menu',
+    'Bandera de España':'Flag of Spain','Bandera de Andalucía':'Flag of Andalusia',
+    'Visualizaciones de la portada:':'Homepage views:',
+    'Consultar estadísticas de visualizaciones':'View visitor statistics',
+    'Contador de visualizaciones de hoy y acumuladas':'Visitor counter: today and total'
+  };
+  const targetNodes=document.querySelectorAll('.site-header,footer.v4-footer');
+  targetNodes.forEach(root=>{
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+    const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+    nodes.forEach(node=>{
+      for(const [from,to] of Object.entries(replacements))
+        node.nodeValue=node.nodeValue.replaceAll(from,to);
+    });
+    root.querySelectorAll('[aria-label],[title],[alt]').forEach(el=>{
+      for(const key of ['aria-label','title','alt']){
+        const v=el.getAttribute(key);if(v&&replacements[v])el.setAttribute(key,replacements[v]);
+      }
+    });
+  });
+  document.querySelectorAll('.site-header a[href]').forEach(a=>{
+    const href=a.getAttribute('href');
+    if(!href || href.startsWith('http') || href.startsWith('#'))return;
+    if(href.startsWith('en/'))return;
+    if(englishPages.has(href))a.setAttribute('href',href);
+    else a.setAttribute('href','../'+href);
+  });
+  document.querySelectorAll('.site-header .brand img').forEach(img=>{
+    img.src='../imagenes/ggv-identidad.svg?v=antiadherencia-2';
+  });
+  const sw=document.querySelector('.site-header .language-switch');
+  if(sw){sw.href='../'+currentFile;sw.textContent='ES';sw.setAttribute('aria-label','View this page in Spanish');}
+  const ms=document.querySelector('.mobile-language-switch');
+  if(ms)ms.href='../'+currentFile;
+}
+
 const currentPage = decodeURIComponent(location.pathname.split('/').pop() || 'index.html');
 document.querySelectorAll('.site-header a[href]').forEach(a=>{
   if (a.getAttribute('href') === currentPage) a.setAttribute('aria-current','page');
