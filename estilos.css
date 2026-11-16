@@ -347,3 +347,70 @@ html{scrollbar-gutter:stable}
   body>main:not(.v4-main){padding-left:16px;padding-right:16px}
   .pub-hero{padding-left:16px!important;padding-right:16px!important}
 }
+
+
+/* Propuesta de cabecera para escritorio — revisión 16/11/2026.
+   Conserva sin cambios los breakpoints móvil (<=700px) y tableta (701–1050px). */
+@media (min-width:1051px) {
+  .site-header {
+    background:#123544;
+    border-bottom:1px solid rgba(174,222,220,.23);
+  }
+  .site-header .nav-shell {
+    min-height:94px;
+    gap:clamp(10px,1.3vw,22px);
+  }
+  .site-header .nav-shell>.brand {
+    gap:13px;
+    max-width:430px;
+    flex:0 1 auto;
+  }
+  .site-header .ggv-brand-mark {
+    width:48px;
+    height:48px;
+    flex-basis:48px;
+  }
+  .site-header .ggv-brand-copy {
+    gap:3px;
+  }
+  .site-header .ggv-brand-copy>strong {
+    color:#f6fbfa;
+    font-size:1.04rem;
+    line-height:1.18;
+    letter-spacing:-.018em;
+    white-space:nowrap;
+  }
+  .site-header .ggv-brand-copy>.brand-full-role {
+    color:#bbdcda;
+    font-size:.7rem;
+    line-height:1.3;
+  }
+  .site-header .ggv-brand-copy>.brand-location {
+    color:#d0e5e1;
+    font-size:.66rem;
+    line-height:1.3;
+  }
+  .site-header .primary-nav>a,
+  .site-header .nav-parent {
+    transition:color .18s ease;
+  }
+  .site-header .primary-nav>a:hover,
+  .site-header .nav-parent:hover {
+    color:#a3e7d8;
+  }
+  .site-header .language-switch {
+    border-color:rgba(195,229,226,.52);
+    border-radius:7px;
+  }
+}
+@media (min-width:1051px) and (max-width:1450px) {
+  /* En anchuras intermedias se conserva el menú compacto ya existente. */
+  .site-header .nav-shell>.brand { max-width:min(430px,48vw); }
+}
+@media (min-width:1451px) and (max-width:1650px) {
+  /* Protege el espacio de los accesos de navegación horizontal. */
+  .site-header .ggv-brand-copy>.brand-location { display:none; }
+  .site-header .nav-shell>.brand { max-width:365px; gap:10px; }
+  .site-header .ggv-brand-copy>strong { font-size:.96rem; }
+  .site-header .ggv-brand-copy>.brand-full-role { font-size:.65rem; }
+}
