@@ -244,6 +244,8 @@ html{scrollbar-gutter:stable}
 @media(max-width:1150px){.site-header .header-actions{gap:6px}.site-header .language-switch{padding:8px}}
 
 
+.site-header .ggv-brand-copy>.brand-short-role{display:none}
+
 /* ==============================================================
    REVISIÓN MÓVIL NOV 2026 — solo pantallas compactas.
    El diseño de escritorio conserva todos sus estilos originales.
