@@ -306,3 +306,44 @@ html{scrollbar-gutter:stable}
   .v4-hero{padding-left:16px;padding-right:16px}
   .v4-main{padding-left:16px;padding-right:16px}
 }
+
+
+/* Coherencia responsive común — noviembre 2026.
+   Los componentes y colores de marca se mantienen en todas las páginas. */
+@media (min-width:701px) and (max-width:1050px) {
+  .site-header .ggv-brand-copy>.brand-full-role,
+  .site-header .ggv-brand-copy>.brand-location{display:none}
+  .site-header .ggv-brand-copy>.brand-short-role{display:block;color:#bfdedc;font-size:.76rem;line-height:1.35;margin-top:3px}
+  .site-header .nav-shell>.brand{flex:1 1 auto;min-width:0;max-width:none}
+  .site-header .header-actions{display:none}
+  .site-header .mobile-nav{display:block;flex:0 0 auto}
+}
+@media (max-width:700px) {
+  /* La cabecera compartida y la jerarquía visual se extienden a páginas interiores. */
+  body{overflow-wrap:break-word}
+  body>main:not(.v4-main){width:100%;max-width:100%;padding:32px 20px 64px}
+  main:not(.v4-main)>h1{font-size:clamp(1.9rem,7vw,2.35rem);letter-spacing:-.025em;line-height:1.17;margin:8px 0 22px;color:#193d4b}
+  main:not(.v4-main)>h2{font-size:clamp(1.45rem,5.7vw,1.9rem);line-height:1.24;margin-top:30px}
+  main:not(.v4-main) .lead{font-size:1rem;line-height:1.75}
+  main:not(.v4-main) .grid{grid-template-columns:minmax(0,1fr);gap:14px}
+  main:not(.v4-main) .card{padding:19px 20px;border-radius:11px}
+  main:not(.v4-main) .card h3{font-size:1.12rem}
+  main:not(.v4-main) .page-photo{margin:20px 0 24px}
+  main:not(.v4-main) .page-photo img{height:auto;max-height:320px;object-fit:contain}
+  main:not(.v4-main) .paper{padding:13px 16px;margin:17px 0}
+  .pub-hero{padding:38px 20px!important}
+  .pub-hero h1{font-size:clamp(1.95rem,7.2vw,2.65rem);line-height:1.14}
+  .pub-hero p{font-size:.98rem;line-height:1.7}
+  .v4-main{max-width:100%;min-width:0}
+  .v4-main h1{overflow-wrap:anywhere}
+  .v4-main .intro-block h1{font-size:clamp(1.9rem,7vw,2.4rem);line-height:1.2}
+  .v4-main .intro-block .lead{font-size:1rem}
+  .v4-main .intro-block .intro-prose{min-width:0}
+  .v4-main .paper-feature-grid article{padding:20px}
+  .btn-main,.btn-outline,.btn{min-height:44px;max-width:100%;white-space:normal}
+  .site-header .mobile-nav .mobile-links{overscroll-behavior:contain}
+}
+@media (max-width:360px) {
+  body>main:not(.v4-main){padding-left:16px;padding-right:16px}
+  .pub-hero{padding-left:16px!important;padding-right:16px!important}
+}
