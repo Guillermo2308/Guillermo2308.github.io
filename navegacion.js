@@ -6,6 +6,20 @@ const sharedFooter = "<footer class=\"v4-footer compact-footer\"><div class=\"fo
 const headerSlot = document.getElementById('site-header-slot');
 const footerSlot = document.getElementById('site-footer-slot');
 if (headerSlot) headerSlot.outerHTML = sharedHeader;
+if(headerSlot){
+  const nav=document.querySelector('.primary-nav');
+  const mobile=document.querySelector('.mobile-links');
+  const groups=[
+    ['Publicaciones','publications-menu','publicaciones.html',[['publicaciones.html','Artículos JCR'],['otras-publicaciones.html#otros','Otros artículos'],['otras-publicaciones.html#congresos','Congresos'],['otras-publicaciones.html#libros','Libros y manuales']]],
+    ['Trayectoria','career-menu','trayectoria.html',[['trayectoria.html','Perfil académico'],['patentes.html','Patentes'],['proyectos.html','Proyectos y transferencia']]]
+  ];
+  for(const [label,id,href,items] of groups){
+    const a=nav?.querySelector(':scope > a[href="'+href+'"]');
+    if(a){const d=document.createElement('div');d.className='nav-dropdown';d.innerHTML='<button type="button" class="nav-parent nav-toggle" aria-expanded="false" aria-controls="'+id+'">'+label+' <span aria-hidden="true">⌄</span></button><div class="dropdown-panel" id="'+id+'"><div class="mega-grid">'+items.map(([url,text])=>'<a href="'+url+'"><strong>'+text+'</strong></a>').join('')+'</div></div>';a.replaceWith(d);}
+    const ma=mobile?.querySelector(':scope > a[href="'+href+'"]');
+    if(ma){const d=document.createElement('details');d.className='mobile-research';d.innerHTML='<summary>'+label+' <span aria-hidden="true">⌄</span></summary><div>'+items.map(([url,text])=>'<a href="'+url+'">'+text+'</a>').join('')+'</div>';ma.replaceWith(d);}
+  }
+}
 if (footerSlot) {
   const note = footerSlot.dataset.footerNote;
   footerSlot.outerHTML = sharedFooter;
@@ -57,6 +71,7 @@ if(isEnglish){
     'Materiales sostenibles':'Sustainable Materials',
     'Fibras naturales y nuevos compuestos':'Natural fibres and new composites',
     'Publicaciones':'Publications','Trayectoria':'Academic Profile',
+    'Artículos JCR':'JCR articles','Otros artículos':'Other articles','Congresos':'Conferences','Libros y manuales':'Books and manuals','Perfil académico':'Academic profile','Patentes':'Patents','Proyectos y transferencia':'Projects and knowledge transfer',
     'Contacto y ubicación':'Contact','Actualidad técnica':'Technical Insights',
     'Asesoramiento':'Collaboration','Menú':'Menu',
     'Bandera de España':'Flag of Spain','Bandera de Andalucía':'Flag of Andalusia',
@@ -86,7 +101,7 @@ if(isEnglish){
     const href=a.getAttribute('href');
     if(!href || href.startsWith('http') || href.startsWith('#'))return;
     if(href.startsWith('en/'))return;
-    if(englishPages.has(href))a.setAttribute('href',href);
+    if(englishPages.has(href.split('#')[0]))a.setAttribute('href',href);
     else a.setAttribute('href','../'+href);
   });
   document.querySelectorAll('.site-header .brand img').forEach(img=>{
@@ -107,11 +122,9 @@ const currentPage = decodeURIComponent(location.pathname.split('/').pop() || 'in
 document.querySelectorAll('.site-header a[href]').forEach(a=>{
   if (a.getAttribute('href') === currentPage) a.setAttribute('aria-current','page');
 });
-const dropdown=document.querySelector('.nav-dropdown');
-const button=dropdown?.querySelector('.nav-toggle');
-if (!dropdown || !button) return;
-const close=()=>{dropdown.classList.remove('is-open');button.setAttribute('aria-expanded','false')};
-button.addEventListener('click',()=>{const isOpen=dropdown.classList.toggle('is-open');button.setAttribute('aria-expanded',String(isOpen))});
-document.addEventListener('click',event=>{if(!dropdown.contains(event.target))close()});
-document.addEventListener('keydown',event=>{if(event.key==='Escape' && dropdown.classList.contains('is-open')){close();button.focus()}});
+const dropdowns=[...document.querySelectorAll('.primary-nav .nav-dropdown')];
+const close=d=>{d.classList.remove('is-open');d.querySelector('.nav-toggle')?.setAttribute('aria-expanded','false')};
+dropdowns.forEach(d=>{const b=d.querySelector('.nav-toggle');if(!b)return;b.addEventListener('click',()=>{const wasOpen=d.classList.contains('is-open');dropdowns.forEach(close);if(!wasOpen){d.classList.add('is-open');b.setAttribute('aria-expanded','true')}else b.blur()})});
+document.addEventListener('click',event=>dropdowns.forEach(d=>{if(!d.contains(event.target))close(d)}));
+document.addEventListener('keydown',event=>{if(event.key==='Escape'){const d=dropdowns.find(x=>x.classList.contains('is-open'));if(d){close(d);d.querySelector('.nav-toggle')?.focus()}}});
 })();
