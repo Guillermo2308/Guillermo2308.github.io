@@ -414,3 +414,23 @@ html{scrollbar-gutter:stable}
   .site-header .ggv-brand-copy>strong { font-size:.96rem; }
   .site-header .ggv-brand-copy>.brand-full-role { font-size:.65rem; }
 }
+
+
+/* Compact shared footer and a single closing call to action. */
+.v4-footer.compact-footer{display:block;padding:30px 5% 22px;background:#102f40;color:#dce9ec;font-size:.84rem;line-height:1.55}
+.compact-footer .footer-inner{max-width:1160px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:32px;row-gap:16px;align-items:start}
+.compact-footer .footer-identity{display:flex;flex-direction:column;gap:3px;min-width:0}
+.compact-footer .footer-identity strong{font-size:1rem;letter-spacing:.01em}
+.compact-footer span{display:inline;margin:0}
+.compact-footer a{color:#e5f2f1;text-decoration:none;overflow-wrap:anywhere}
+.compact-footer a:hover{text-decoration:underline;text-underline-offset:3px}
+.compact-footer a:focus-visible{outline:2px solid #f6d28a;outline-offset:4px}
+.compact-footer .footer-links{display:flex;gap:8px 22px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
+.compact-footer .footer-meta{grid-column:1/-1;border-top:1px solid rgba(220,233,236,.17);padding-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;color:#b9d0d3;font-size:.75rem}
+.compact-footer .site-visit-counter{margin-left:auto;display:inline-flex;align-items:center;opacity:.88}
+.compact-footer .site-visit-counter img{display:block;width:155px;height:20px;max-width:100%;margin:0}
+.compact-footer .footer-note{grid-column:1/-1;margin:0;color:#b9d0d3}
+.consult-band.consult-closing{margin:8px 0 40px;grid-template-columns:minmax(0,1.5fr) minmax(0,.75fr);gap:26px;padding:34px 40px}
+.consult-closing .consult-action{gap:12px;align-items:flex-start}
+.consult-closing .consult-secondary{color:#d5efea;text-decoration:underline;text-underline-offset:3px;font-size:.9rem}
+@media(max-width:720px){.compact-footer .footer-inner{grid-template-columns:1fr;gap:14px}.compact-footer .footer-links{justify-content:flex-start;gap:9px 16px}.compact-footer .footer-meta{gap:8px 14px}.compact-footer .site-visit-counter{margin-left:0}.consult-band.consult-closing{grid-template-columns:1fr;padding:25px 22px;margin-bottom:30px;gap:18px}}
