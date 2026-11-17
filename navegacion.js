@@ -17,7 +17,7 @@ if (footerSlot) {
 
 /* Bilingual header. English pages are stored under /en/. */
 const isEnglish=location.pathname.split('/').includes('en');
-const englishPages=new Set(['index.html','superficies.html','fabricacion.html','conformado.html','valorwool.html','publicaciones.html','trayectoria.html','contacto.html','asesoramiento.html']);
+const englishPages=new Set(['index.html','superficies.html','fabricacion.html','conformado.html','valorwool.html','publicaciones.html','trayectoria.html','contacto.html','asesoramiento.html','aviso-legal.html','privacidad.html']);
 const currentFile=decodeURIComponent(location.pathname.split('/').pop()||'index.html');
 const requestedHref=isEnglish?'../'+currentFile:'en/'+currentFile;
 const translatedHref=englishPages.has(currentFile)?requestedHref:(isEnglish?'../index.html':'en/index.html');
@@ -93,6 +93,11 @@ if(isEnglish){
   const ms=document.querySelector('.mobile-language-switch');
   if(ms)ms.href='../'+currentFile;
 }
+
+
+const legalFooter=document.querySelector('footer.v4-footer');
+if(legalFooter){const nav=document.createElement('nav');nav.setAttribute('aria-label',isEnglish?'Legal information':'Información legal');nav.style.cssText='display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;margin-top:8px;font-size:.85rem';for(const [href,label] of [['aviso-legal.html',isEnglish?'Legal notice':'Aviso legal'],['privacidad.html',isEnglish?'Privacy policy':'Política de privacidad']]){const a=document.createElement('a');a.href=href;a.textContent=label;a.style.cssText='color:inherit;text-decoration:underline;text-underline-offset:3px';nav.appendChild(a);}legalFooter.appendChild(nav);}
+const consultationForm=document.getElementById('consulta-form');if(consultationForm){const info=document.createElement('p');info.style.cssText='font-size:.85rem;line-height:1.5';info.innerHTML=isEnglish?'Controller: Guillermo Guerrero Vacas. Your details will be used to respond to your enquiry on the basis of legitimate interest or requested pre-contractual steps, as applicable. The form opens your email app. See the <a href="privacidad.html">privacy policy</a> for retention, recipients and rights.':'Responsable: Guillermo Guerrero Vacas. Los datos se utilizarán para atender su consulta, sobre la base del interés legítimo o de las medidas precontractuales solicitadas, cuando proceda. El formulario abre su aplicación de correo. Consulte la <a href="privacidad.html">política de privacidad</a> para conocer la conservación, los destinatarios y sus derechos.';const submit=consultationForm.querySelector('button[type="submit"],input[type="submit"]');if(submit&&submit.parentNode)submit.parentNode.insertBefore(info,submit);else consultationForm.appendChild(info);}
 
 const currentPage = decodeURIComponent(location.pathname.split('/').pop() || 'index.html');
 document.querySelectorAll('.site-header a[href]').forEach(a=>{
