@@ -32,7 +32,7 @@ if (footerSlot) {
 
 /* Bilingual header. English pages are stored under /en/. */
 const isEnglish=location.pathname.split('/').includes('en');
-const englishPages=new Set(['index.html','superficies.html','fabricacion.html','conformado.html','valorwool.html','publicaciones.html','trayectoria.html','contacto.html','asesoramiento.html','aviso-legal.html','privacidad.html','patentes.html','proyectos.html','otras-publicaciones.html','medir-antiadherencia.html','docencia.html','noticias.html']);
+const englishPages=new Set(['index.html','superficies.html','fabricacion.html','conformado.html','valorwool.html','publicaciones.html','trayectoria.html','contacto.html','asesoramiento.html','aviso-legal.html','privacidad.html','patentes.html','proyectos.html','otras-publicaciones.html','medir-antiadherencia.html','docencia.html','noticias.html','medir-antiadherencia-2.html']);
 const currentFile=decodeURIComponent(location.pathname.split('/').pop()||'index.html');
 const requestedHref=isEnglish?'../'+currentFile:'en/'+currentFile;
 const hasTranslation=englishPages.has(currentFile);
