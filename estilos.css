@@ -60,7 +60,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #4a
 .quality-copy p{margin:7px 0;font-size:.85rem;color:#486872}
 .legend-swatch{display:inline-block;width:10px;height:10px;border-radius:3px;background:#158681;margin-right:4px}
 .legend-secondary{background:#d7e6e6}
-.metrics-source{font-size:.77rem;color:#687d84;margin:14px 0 0}
+.metrics-source{font-size:.77rem;color:#495e65;margin:14px 0 0}
 .transfer-section{padding:0 0 88px}
 .transfer-diagram{background:#f5f9f9;border:1px solid #d9e9e7;border-radius:16px;padding:35px 22px;display:flex;align-items:center;flex-direction:column;gap:9px}
 .transfer-step{max-width:590px;width:100%;border:1px solid #cfe4e0;border-radius:12px;padding:17px 24px;background:white;text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px;text-decoration:none;color:#183b48}
