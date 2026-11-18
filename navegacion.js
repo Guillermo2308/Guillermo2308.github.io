@@ -32,28 +32,33 @@ if (footerSlot) {
 
 /* Bilingual header. English pages are stored under /en/. */
 const isEnglish=location.pathname.split('/').includes('en');
-const englishPages=new Set(['index.html','superficies.html','fabricacion.html','conformado.html','valorwool.html','publicaciones.html','trayectoria.html','contacto.html','asesoramiento.html','aviso-legal.html','privacidad.html','patentes.html','proyectos.html','otras-publicaciones.html','medir-antiadherencia.html','docencia.html']);
+const englishPages=new Set(['index.html','superficies.html','fabricacion.html','conformado.html','valorwool.html','publicaciones.html','trayectoria.html','contacto.html','asesoramiento.html','aviso-legal.html','privacidad.html','patentes.html','proyectos.html','otras-publicaciones.html','medir-antiadherencia.html','docencia.html','noticias.html']);
 const currentFile=decodeURIComponent(location.pathname.split('/').pop()||'index.html');
 const requestedHref=isEnglish?'../'+currentFile:'en/'+currentFile;
-const translatedHref=englishPages.has(currentFile)?requestedHref:(isEnglish?'../index.html':'en/index.html');
+const hasTranslation=englishPages.has(currentFile);
+const translatedHref=hasTranslation?requestedHref:null;
+const targetLang=isEnglish?'es':'en';
+const unavailableLabel=isEnglish?'Spanish version not available':'Versión inglesa aún no disponible';
 const actionGroup=document.querySelector('.site-header .header-actions');
 if(actionGroup){
   const switcher=document.createElement('a');
   switcher.className='language-switch';
-  switcher.href=translatedHref;
+  if(hasTranslation)switcher.href=translatedHref;
+  else {switcher.setAttribute('aria-disabled','true');switcher.setAttribute('role','link');switcher.title=unavailableLabel;switcher.style.opacity='0.6';switcher.style.cursor='default';}
   switcher.hreflang=isEnglish?'es':'en';
   switcher.lang=isEnglish?'es':'en';
-  switcher.setAttribute('aria-label',isEnglish?'Ver esta página en español':'Read this page in English');
-  switcher.innerHTML=isEnglish?'ES <span aria-hidden="true">↗</span>':'EN <span aria-hidden="true">↗</span>';
+  switcher.setAttribute('aria-label',hasTranslation?(isEnglish?'Ver esta página en español':'Read this page in English'):unavailableLabel);
+  switcher.innerHTML=hasTranslation?(isEnglish?'ES <span aria-hidden="true">↗</span>':'EN <span aria-hidden="true">↗</span>'):(isEnglish?'ES —':'EN —');
   actionGroup.appendChild(switcher);
 }
 const mobileLinks=document.querySelector('.mobile-links');
 if(mobileLinks){
   const mobileSwitch=document.createElement('a');
-  mobileSwitch.href=translatedHref;
+  if(hasTranslation)mobileSwitch.href=translatedHref;
+  else {mobileSwitch.setAttribute('role','link');mobileSwitch.setAttribute('aria-disabled','true');mobileSwitch.title=unavailableLabel;mobileSwitch.style.opacity='0.6';}
   mobileSwitch.className='mobile-language-switch';
   mobileSwitch.hreflang=isEnglish?'es':'en';
-  mobileSwitch.textContent=isEnglish?'Español (ES)':'English (EN)';
+  mobileSwitch.textContent=hasTranslation?(isEnglish?'Español (ES)':'English (EN)'):unavailableLabel;
   mobileLinks.appendChild(mobileSwitch);
 }
 if(isEnglish){
@@ -62,7 +67,7 @@ if(isEnglish){
     'Ingeniería de los Procesos de Fabricación · Universidad de Córdoba':'Manufacturing Engineering · University of Córdoba',
     'Universidad de Córdoba':'University of Córdoba',
     'Córdoba · Andalucía · España':'Córdoba · Andalusia · Spain',
-    'Inicio':'Home','Investigación':'Research','ÁREAS DE INVESTIGACIÓN':'RESEARCH AREAS',
+    'Navegación principal':'Primary navigation','Inicio':'Home','Investigación':'Research','ÁREAS DE INVESTIGACIÓN':'RESEARCH AREAS',
     'Superficies y recubrimientos':'Surface Engineering & Coatings',
     'Antiadherencia, desmoldeo y caracterización':'Non-stick properties, release and characterization',
     'Fabricación avanzada':'Advanced Manufacturing',
@@ -100,7 +105,7 @@ if(isEnglish){
   });
   document.querySelectorAll('.site-header a[href]').forEach(a=>{
     const href=a.getAttribute('href');
-    if(!href || href.startsWith('http') || href.startsWith('#'))return;
+    if(!href || a.matches('.language-switch,.mobile-language-switch') || href.startsWith('http') || href.startsWith('#'))return;
     if(href.startsWith('en/'))return;
     if(englishPages.has(href.split('#')[0]))a.setAttribute('href',href);
     else a.setAttribute('href','../'+href);
@@ -109,9 +114,9 @@ if(isEnglish){
     img.src='../imagenes/ggv-identidad.svg?v=antiadherencia-2';
   });
   const sw=document.querySelector('.site-header .language-switch');
-  if(sw){sw.href='../'+currentFile;sw.textContent='ES';sw.setAttribute('aria-label','View this page in Spanish');}
+  if(sw&&hasTranslation){sw.href=translatedHref;sw.setAttribute('aria-label','View this page in Spanish');}
   const ms=document.querySelector('.mobile-language-switch');
-  if(ms)ms.href='../'+currentFile;
+  if(ms&&hasTranslation)ms.href=translatedHref;
 }
 
 
